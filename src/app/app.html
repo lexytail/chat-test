@@ -1,0 +1,11 @@
+<div class="massages">
+  <message *ngFor="let message of messages" [message]="message"></message>
+</div>
+
+<div class="panel">
+  <input placeholder="Имя" [(ngModel)]="message.sender.name">
+  <input placeholder="Фамилия" [(ngModel)]="message.sender.surname">
+  <textarea placeholder="Введите сообщение" [(ngModel)]="message.text"></textarea>
+  <button (click)="newMessage()">Отправить</button>
+  <button (click)="test()">Протестить</button>
+</div>
