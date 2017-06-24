@@ -12,7 +12,7 @@ import { MessageService } from 'app/services'
 export class AppComponent {
 
   message = new Message
-  messages = this.$message.messages
+  messages: Message[] = this.$message.get()
 
   constructor(
     public $message: MessageService
@@ -20,6 +20,7 @@ export class AppComponent {
 
   sendMessage() {
     this.$message.send(this.message)
+    this.messages.push(this.message)
   }
 
   test() {}
