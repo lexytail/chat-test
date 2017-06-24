@@ -1,7 +1,8 @@
 import { Component } from '@angular/core'
-import { Message } from './classes/message'
-import { User } from './classes/user'
-import { messages } from './mocks/messages'
+import { Http, Response } from '@angular/http'
+import { Message } from 'app/classes'
+import { messages } from 'app/mocks/messages'
+import { MessageService } from 'app/services'
 
 @Component({
   selector: 'app-root',
@@ -10,23 +11,17 @@ import { messages } from './mocks/messages'
 })
 export class AppComponent {
 
-  messages: Message[] = messages
   message = new Message
+  messages = this.$message.messages
 
-  newMessage() {
+  constructor(
+    public $message: MessageService
+  ) { }
 
-    const message = new Message(this.message.sender, this.message.text)
-
-    this.messages.push(message)
-
+  sendMessage() {
+    this.$message.send(this.message)
   }
 
-  test() {
-
-    const user = new User('Жорж', 'Нунга')
-
-    this.messages.push(new Message(user, 'Привет'))
-
-  }
+  test() {}
 
 }
